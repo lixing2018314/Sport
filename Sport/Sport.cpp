@@ -2,7 +2,7 @@
 //#include <QDirModel>
 #include <QFileSystemModel>
 #include <QStandardItemModel>
-//ceshiceshi
+//ceshiceshiï¼Œæ›´æ–°æµ‹è¯•
 Sport::Sport(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -17,10 +17,10 @@ Sport::Sport(QWidget *parent)
     QWidget* lEmptyWidget = new QWidget();
     ui.dockWidget_2->setTitleBarWidget(lEmptyWidget);
     delete  lTitleBar;*/
-    //ÉèÖÃdockwidgetÖ»ÄÜËõ·Å£¬²»¿ÉÒÆ¶¯
+    //è®¾ç½®dockwidgetåªèƒ½ç¼©æ”¾ï¼Œä¸å¯ç§»åŠ¨
     ui.dockWidget_2->setFeatures(QDockWidget::NoDockWidgetFeatures);
     ui.dockWidget_3->setFeatures(QDockWidget::NoDockWidgetFeatures);
-    //ÉèÖÃdockwidgetÑÕÉ«
+    //è®¾ç½®dockwidgeté¢œè‰²
     QPalette pal;
     pal.setColor(QPalette::Window,QColor(45,45,45));
     ui.dockWidget_2->setAutoFillBackground(true);
@@ -67,9 +67,9 @@ Sport::Sport(QWidget *parent)
 
     model1->setColumnCount(2);
 
-    model1->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("¿¨ºÅ"));
+    model1->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("å¡å·"));
 
-    model1->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("ÐÕÃû"));
+    model1->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("å§“å"));
     ui.tableView->setModel(model1);*/
      //  ui.menuBar->
       // ui.dockWidget_2->setBaseSize(370,457);
@@ -79,7 +79,7 @@ Sport::Sport(QWidget *parent)
        (
            "QAction#action { background:red }"
        );*/
-       //Òþ²Ø±êÌâÀ¸
+       //éšè—æ ‡é¢˜æ 
        /*QWidget* titleBarWidget = ui.dockWidget_2->titleBarWidget();
        ui.dockWidget_2->setTitleBarWidget(NULL);
        delete  titleBarWidget;*/

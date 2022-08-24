@@ -2,7 +2,7 @@
 //#include <QDirModel>
 #include <QFileSystemModel>
 #include <QStandardItemModel>
-
+//≤‚ ‘
 Sport::Sport(QWidget *parent)
     : QMainWindow(parent)
 {

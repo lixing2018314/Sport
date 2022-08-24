@@ -2,7 +2,7 @@
 //#include <QDirModel>
 #include <QFileSystemModel>
 #include <QStandardItemModel>
-//≤‚ ‘12
+//ceshiceshi
 Sport::Sport(QWidget *parent)
     : QMainWindow(parent)
 {

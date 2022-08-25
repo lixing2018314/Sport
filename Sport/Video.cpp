@@ -64,7 +64,7 @@ void Video::frameStepValue()
 }
 void Video::sliderChangeValue()
 {
-	currentFrame = videoUi.videoSlider->value();
+	//currentFrame = videoUi.videoSlider->value();
 	showCurrentFrame(currentFrame);
 }
 void Video::playOrDisplay()

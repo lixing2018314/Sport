@@ -6,8 +6,8 @@
 using namespace cv;
 using namespace std;
 
-Video::Video()
-	: QWidget()
+Video::Video(QWidget* parent)
+	: QWidget(parent)
 {
 	videoUi.setupUi(this);
 	//videoUi.videoLabelShow->setScaledContents(true);
@@ -20,9 +20,10 @@ Video::Video()
 	//connect(updataFrame, SIGNAL(timeout()), this, SLOT(vedioshow()));
 	//connect(videoUi.pushButton,SIGNAL(clicked()),this,SLOT(showVideo()));
 	//connect(videoUi.pushButton, &QPushButton::clicked, this, &Video::showVideo);
-	connect(videoUi.openVideoButton, &QPushButton::clicked, this, &Video::openVideo);
-	connect(videoUi.firstFrameButton, &QPushButton::clicked, this, &Video::setFirstFrame);
-	connect(videoUi.finalButton, &QPushButton::clicked, this, &Video::setFinalFrame);
+	//videoUi.lastPushButton->setStyleSheet("background-color:DeepSkyBlue;font-size:40px;color:white");
+	connect(videoUi.lastPushButton, &QPushButton::clicked, this, &Video::openVideo);
+	//connect(videoUi.firstFrameButton, &QPushButton::clicked, this, &Video::setFirstFrame);
+	//connect(videoUi.finalButton, &QPushButton::clicked, this, &Video::setFinalFrame);
 	connect(videoUi.leftFrameButton, &QPushButton::clicked, [=]() {
 		currentFrame--;
 		showCurrentFrame(currentFrame);
@@ -36,22 +37,23 @@ Video::Video()
 	connect(videoUi.quitButton, &QPushButton::clicked, this, &Video::playOrDisplay);
 
 	connect(frameGap, &QTimer::timeout, [=]() {
-		if (videoUi.backPushButton->isCheckable()) {
-			currentFrame++;
+		if (videoUi.loopPushButton->isCheckable() || currentFrame == allFrame - 1) {
+			currentFrame = 0;
 		}
 		else {
-			currentFrame--;
+			currentFrame++;
 		}
 		showCurrentFrame(currentFrame);
 		});
 	connect(videoUi.videoSlider, &VideoSlider::valueChanged, this, &Video::sliderChangeValue);
-	connect(videoUi.frameStepBox, &QDoubleSpinBox::valueChanged, this, &Video::frameStepValue);
-	connect(videoUi.newButton, &QPushButton::clicked, [=]() {
-		currentFrame = 0;
-		videoUi.backPushButton->setCheckable(true);
-		showCurrentFrame(currentFrame); });
-	connect(videoUi.backPushButton, &QPushButton::clicked, [=]() {
-		videoUi.backPushButton->setCheckable(!videoUi.backPushButton->isCheckable()); });
+	videoUi.videoLabelShow->setScaledContents(true);
+	//connect(videoUi.frameStepHorizontalSlider, &QHorizontalSlider::valueChanged, this, &Video::frameStepValue);
+	//connect(videoUi.newButton, &QPushButton::clicked, [=]() {
+	//	currentFrame = 0;
+	//	videoUi.backPushButton->setCheckable(true);
+	//	showCurrentFrame(currentFrame); });
+	//connect(videoUi.backPushButton, &QPushButton::clicked, [=]() {
+	//	videoUi.backPushButton->setCheckable(!videoUi.backPushButton->isCheckable()); });
 }
 
 Video::~Video()
@@ -59,7 +61,7 @@ Video::~Video()
 void Video::frameStepValue()
 {
 	frameGap->stop();
-	frequency = int(frequency / videoUi.frameStepBox->value());
+	//frequency = int(frequency / videoUi.frameStepBox->value());
 	frameGap->start(frequency);
 }
 void Video::sliderChangeValue()
@@ -106,11 +108,11 @@ void Video::openVideo()
 	frameGap->start(frequency);
 	videoUi.videoSlider->setMinimum(0);
 	videoUi.videoSlider->setMaximum(allFrame - 1);
-	videoUi.frameStepBox->setValue(1);
-	videoUi.frameStepBox->setMinimum(0.01);
-	videoUi.frameStepBox->setSingleStep(0.5);
-	videoUi.frameStepBox->setMaximum(5);
-	videoUi.backPushButton->setCheckable(true);
+	//videoUi.frameStepBox->setValue(1);
+	//videoUi.frameStepBox->setMinimum(0.01);
+	//videoUi.frameStepBox->setSingleStep(0.5);
+	//videoUi.frameStepBox->setMaximum(5);
+	//videoUi.backPushButton->setCheckable(true);
 }
 void Video::getVideo()
 {
@@ -145,7 +147,7 @@ void Video::showCurrentFrame(int i)
 	videoUi.videoLabelShow->setPixmap(QPixmap::fromImage(temp));
 	videoUi.videoLabelShow->rawPix->fromImage(temp);
 	videoUi.videoLabelShow->pix->fromImage(temp);
-	videoUi.videoLabelShow->resize(temp.size());
+	//videoUi.videoLabelShow->resize(temp.size());
 	videoUi.videoLabelShow->show();
 	videoUi.videoSlider->setValue(currentFrame);
 }

@@ -1,8 +1,8 @@
 #pragma once
-
+#include <QObject>
 #include <QLabel>
 //#include"Video.h"
-#include <QObject>
+
 class VideoLabel : public QLabel
 {
     Q_OBJECT
@@ -41,7 +41,7 @@ public:
     void mouseDoubleClickEvent(QMouseEvent* event);
 
     //Video* video;
-private slots:
+//private slots:
     //void paintEvent(QPaintEvent* event);
 
 };

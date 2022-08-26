@@ -13,7 +13,7 @@ class Video : public QWidget
 	Q_OBJECT
 
 public:
-	Video();
+	Video(QWidget* parent = nullptr);
 	~Video();
 	//cv::VideoCapture getRawVideo();
 	String setFileName(String fileName);
@@ -38,7 +38,7 @@ public:
 	Ptr<BackgroundSubtractor> ptrKNN;
 
 	//QTimer* updataFrame = new QTimer();
-private:
+//private:
 	Ui::VideoClass videoUi;
 	QTimer* frameGap;
 	//VideoSlider *videoSlider;
